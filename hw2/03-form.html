@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>03 - Form</title>
     <link
@@ -12,8 +18,48 @@
     <script defer src="03-form.js"></script>
   </head>
   <body class="bg-dark">
-    <form class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+    <form class="bg-light border rounded w-50 mx-auto mt-5 p-5" id="form1">
       <h1 class="mt-2 mb-4">Contact Form</h1>
+      <div>
+        <label for="name">Name *</label>
+        <input type="text" class="form-control" id="name" required />
+        <label id="validName" style="color: red"></label>
+        <br />
+        <label for="email">Email *</label>
+        <input type="text" id="email" class="form-control" required />
+        <label id="validEmail" style="color: red"></label>
+        <br />
+        <label for="message">Submit Your message: </label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="message"
+          rows="6"
+          required
+        ></textarea>
+        <br />
+        <input type="checkbox" id="checkbox" />
+        <label type="text" id="checkbox"> Sign up for the newsletter </label>
+        <br />
+      <div>
+        <input
+          type="button"
+          class="btn btn-primary flex-fill"
+          id="Submit"
+          value="Submit"
+          style="width: 50%; float: left"
+          onclick="submitForm()"
+        />
+        <input
+          type="button"
+          class="btn btn-secondary flex-fill"
+          id="Reset"
+          value="Reset"
+          style="width: 50%; float:right"
+          onclick="resetForm()"
+        />
+        </div>
+      </div>
     </form>
   </body>
 </html>
