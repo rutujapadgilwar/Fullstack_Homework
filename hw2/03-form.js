@@ -4,8 +4,8 @@
 let validText = document.getElementById("validName");
 let validEmail = document.getElementById("validEmail");
 function validateForm() {
-  var formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0123456789]/;
-  var formatEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0123456789]/;
+  const formatEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   let fieldName = document.forms["form1"]["name"].value;
   let fieldEmail = document.forms["form1"]["email"].value;
 

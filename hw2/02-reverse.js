@@ -3,18 +3,18 @@
 // Add your code here
 function reverseNumber() {
     console.log("Inside reverseNumber");
-  var number = document.getElementById("input").value;
+  let number = document.getElementById("input").value;
   let ans = document.getElementById("ans");
   const num1 = number;
-  var reverse = 0;
+  let reverse = 0;
   findlength = number.toString().length;
-  if (findlength != 8) {
+  if (findlength !== 8) {
     ans.style = "color:Red";
     ans.innerHTML = "Error: Please input an 8-digit number";
     return;
 
   }
-  while (number != 0) 
+  while (number !== 0) 
   {
     rem = number % 10;
     reverse = reverse * 10 + rem;
