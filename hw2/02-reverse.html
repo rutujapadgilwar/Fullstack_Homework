@@ -17,13 +17,19 @@
         <label for="input">Enter an 8-digit number: </label>
         <input type="number" class="form-control" id="input" required />
       </div>
+
       <div class="form-group mt-4">
         <input
-          type="submit"
+          type="button"
           class="btn btn-primary"
+          id="reverseButton"
           value="Reverse"
-          id="reverse"
+          onclick="reverseNumber()"
         />
+      </div>
+      <div>
+        <br>
+        <label id ="ans"></label>
       </div>
     </main>
   </body>

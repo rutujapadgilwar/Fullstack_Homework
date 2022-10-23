@@ -10,10 +10,10 @@
     />
     <script defer src="04-api.js"></script>
   </head>
-  <body class="bg-dark">
+  <body class="bg-dark" onload="document.getElementById('para').innerHTML = displayData()">
     <section class="container border rounded bg-light w-50 mx-auto mt-5 p-3">
       <h1 class="mt-2 mb-4">REST Countries</h1>
-      <ol id="results"></ol>
+      <ol id="results" type="1"></ol>
     </section>
   </body>
 </html>
