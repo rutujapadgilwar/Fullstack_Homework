@@ -1,6 +1,6 @@
 let http = require("http");
 const port = process.env.PORT || 5001;
-const { parse } = require("querystring");
+var qs = require("node:querystring");
 
 // http://localhost:5001/form should return a form with input elements for username, email, and submit button
 // http://localhost:5001/submit should return all the data the user entered
@@ -49,32 +49,34 @@ const server = http.createServer((req, res) => {
   } else if (req.url === "/submit") {
     const FORM_URLENCODED = "application/x-www-form-urlencoded";
     if (req.headers["content-type"] === FORM_URLENCODED) {
-      req.on("data", (chunk) => (body += chunk.toString()));
+      req.on("data", (chunk) => {
+        body += chunk.toString();
+        body = qs.parse(body);
+      }
+      );
 
       req.on("end", () => {
         res.writeHead(200, { "Content-Type": "text/html" });
-        const splitData = body.split("&");
-
+        
         res.write(
           "Name: " +
-            (splitData[0].substring(splitData[0].indexOf("=") + 1) + `<br/>`)
+            body.Name + `<br/>`
         );
         res.write(
           "Email: " +
-            decodeURIComponent((splitData[1].substring(splitData[1].indexOf("=") + 1) + `<br/>`))
+            body.Email + `<br/>`
         );
 
-        let comments = splitData[2].substring(splitData[2].indexOf("=") + 1);
+        let comments = body.Comments;
         comments = comments === "" ? "n/a" : comments;
         res.write("Comments: " + comments + `<br/>`);
-        console.log(splitData[3]);
-        let newsletter = splitData[3] === undefined ? "" : "on";
+        
+        let newsletter = body.Newsletter === undefined ? "" : "on";
         newsletter =
           newsletter === ""
             ? "No, thank you!" 
             : "Yes, Sign me up for the newsletter.";
         res.write("Newsletter: " + newsletter);
-
         res.end();
       });
     }
