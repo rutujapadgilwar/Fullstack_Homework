@@ -81,11 +81,10 @@ const server = http.createServer((req, res) => {
         res.write("<h1> No </h1>");
       }
       res.end();
-      break;
-    default:
-      res.writeHead(404, { "Content-Type": "text/html" });
-      res.write("<h1>404 - page not found</h1>");
-      res.end();
+     default:
+      res.statusCode = 404;
+      res.setHeader = '"Content-Type": "text/html"' 
+      res.end("<h1>404 - page not found</h1>");    
   }
 });
 
