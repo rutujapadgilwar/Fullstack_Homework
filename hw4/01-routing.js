@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // http://localhost:5000/welcome should return a status code 200 with a welcome message of your choice in html format
 
@@ -33,14 +33,47 @@ let getRoutes = () => {
 
 app.get('/', (req, res) => {
   let routeResults = getRoutes();
-
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write(`<h1>Exercise 04</h1>`);
   res.write(`<ul> ${routeResults} </ul>`);
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/html' });
+  res.write("<h1>Welecom</h1>");
+  res.end();
+});
+
+app.get("/redirect", (req,res) =>{
+  res.writeHead(302, {
+  location: "/redirected",
+  });
+  res.end();
+});
+app.get("/redirected", (req,res) => { 
+  res.write("<h1>In redirected</h1>");
+  res.end();
+});
+app.get("/cache", (req,res) => {
+  res.set("Cache-Control", 86400);
+  res.write("<h1>this resource was catched </h1>");
+  res.end();
+});
+app.get("/cookie", (req,res) => {
+  res.writeHead(200, {
+    "Content-Type": "text/html",
+    "Set-Cookie": "hello=world",
+  });
+  res.write("cookies... yum");
+  res.end();
+});
+
+app.get("/*", (req,res) => {
+  res.writeHead(404, {'Content-Type': 'text/html' });
+  res.write("<h1>404- Page Not Found</h1>");
+  res.end();
+});
 
 // Add your code here
 
